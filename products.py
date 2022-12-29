@@ -1,15 +1,23 @@
-#讀取檔案
+
+import os
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if '商品,價格' in line:#跳過'商品,價格'
-            continue
-        name, price = line.strip().split(',')
-        #分割後分別存入name 和 price 
-        #strip
-        #split遇到括號裡的內容做一次切割
-        products.append([name, price])
-print(products)
+if os.path.isfile('products.csv'): #檢查檔案在不在
+    print('找到檔案')
+    #讀取檔案
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:#跳過'商品,價格'
+                continue
+            name, price = line.strip().split(',')
+            #分割後分別存入name 和 price 
+            #strip
+            #split遇到括號裡的內容做一次切割
+            products.append([name, price])
+    print(products)
+else:
+    print('找不到檔案')
+
+
 
 #讓使用者輸入
 while True:
